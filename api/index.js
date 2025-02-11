@@ -19,14 +19,15 @@ const app = express();
 
 app.use(express.json());
 
-app.listen(3002, () => {
-  console.log("server is runing on port 3002");
+app.listen(3001, () => {
+  console.log("server is runing on port 3001");
 });
 
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 
 app.use((err, req, res, next) => {
+  console.log(err.message);
   const statusCode = err.statusCode || 500;
   const message = err.message || "Internal Server Error";
   res.status(statusCode).json({
